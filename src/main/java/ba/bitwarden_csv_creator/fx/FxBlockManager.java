@@ -82,6 +82,7 @@ public class FxBlockManager {
     }
 
     public Node[] getSeparatedActiveBlocks() {
+        if (active.size()<1) return null;
         Node[] nodes = new Node[active.size() + active.size()-1];
         for (int i = 0; i < nodes.length; i++) {
             if ((i&1) == 0) {

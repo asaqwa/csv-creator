@@ -81,6 +81,8 @@ public class FxBlock {
         table.getColumnConstraints().addAll(contentColumn, typeColumn);
 
         types = new ChoiceBox[content.length];
+        int typeIndex = 0;
+        DataType[] standardTypes = {DataType.TITLE, DataType.USERNAME, DataType.PASSWORD, DataType.URI, DataType.NOTES};
         for (int i = 0; i < content.length; i++) {
             RowConstraints row = new RowConstraints();
             row.setMinHeight(22);
@@ -90,7 +92,15 @@ public class FxBlock {
             Label label = new Label(content[i]);
             ChoiceBox<DataType> choiceBox = new ChoiceBox<>();
             choiceBox.getItems().addAll(DataType.values());
-            choiceBox.getSelectionModel().selectLast();
+//            choiceBox.getSelectionModel().selectLast();
+
+            String s = content[i];
+            if ("shop".equalsIgnoreCase(s) || "shops".equalsIgnoreCase(s) || "it".equalsIgnoreCase(s)
+                    || "fake".equalsIgnoreCase(s) || "devices".equalsIgnoreCase(s) || "ÖV".equalsIgnoreCase(s)) {
+                choiceBox.getSelectionModel().select(DataType.FOLDER);
+            } else {
+                choiceBox.getSelectionModel().select(standardTypes[typeIndex++]);
+            }
 
             table.add(label, 0, i);
             table.add(choiceBox, 1, i);

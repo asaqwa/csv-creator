@@ -38,11 +38,11 @@ public class FileProzessorController {
         blockBox.getChildren().remove(1, blockBox.getChildren().size());
         Node[] nodes = blockManager.getSeparatedActiveBlocks();
         if (nodes != null) {
-            blockBox.getChildren().addAll(blockManager.getSeparatedActiveBlocks());
+            blockBox.getChildren().addAll(nodes);
         }
         nodes = blockManager.getNext();
         if (nodes != null) {
-            blockBox.getChildren().addAll(blockManager.getNext());
+            blockBox.getChildren().addAll(nodes);
         }
         entriesQty.setText("Entries: " + csvCreator.getEntriesQty());
     }
